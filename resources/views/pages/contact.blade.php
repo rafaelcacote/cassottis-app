@@ -36,7 +36,7 @@
                         </div>
                         <div class="info-item">
                             <i class="fab fa-whatsapp"></i>
-                            <a href="https://wa.me/5592992684391" target="_blank" rel="noopener">WhatsApp direto</a>
+                            <a href="https://wa.me/5592981075083" target="_blank" rel="noopener">WhatsApp direto</a>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -70,7 +70,7 @@
                     </p>
                 </div>
                 <div class="cta-actions">
-                    <a href="https://wa.me/5592992684391" class="btn btn-primary" target="_blank" rel="noopener">
+                    <a href="https://wa.me/5592981075083" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp"></i>
                         Chamar no WhatsApp
                     </a>

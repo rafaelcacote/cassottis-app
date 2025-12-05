@@ -9,7 +9,7 @@
                 <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'is-active' : '' }}">Sobre</a>
                 <a href="{{ route('services') }}" class="nav-link {{ request()->routeIs('services') ? 'is-active' : '' }}">Serviços</a>
                 <a href="{{ route('portfolio') }}" class="nav-link {{ request()->routeIs('portfolio') ? 'is-active' : '' }}">Portfólio</a>
-                <a href="{{ route('blog') }}" class="nav-link {{ request()->routeIs('blog') ? 'is-active' : '' }}">Blog</a>
+                <!--<a href="{{ route('blog') }}" class="nav-link {{ request()->routeIs('blog') ? 'is-active' : '' }}">Blog</a>-->
                 <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'is-active' : '' }}">Contato</a>
             </div>
         </div>

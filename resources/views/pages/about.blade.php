@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Sobre Mim - Cassottis')
+@section('title', 'Sobre Nós - Cassottis')
 
 @section('content')
     <section class="page-hero">
         <div class="container">
             <div class="page-hero-content">
                 <span class="page-hero-badge">
-                    <i class="fas fa-user-circle"></i>
-                    Sobre mim
+                    <i class="fas fa-building"></i>
+                    Sobre nós
                 </span>
                 <h1 class="page-hero-title">Tecnologia para transformar desafios em resultados reais</h1>
                 <p class="page-hero-text">
-                    Sou Rafael Caçote, desenvolvedor full stack com mais de 5 anos de experiência em criar sistemas que
+                    Somos uma equipe de desenvolvimento full stack especializada em criar sistemas que
                     substituem planilhas complexas por soluções digitais inteligentes, escaláveis e seguras.
                 </p>
             </div>
@@ -24,20 +24,20 @@
             <div class="split-grid">
                 <div class="profile-card">
                     <div class="profile-photo">
-                        <img src="{{ asset('images/eu.png') }}" alt="Rafael Caçote">
+                        <img src="{{ asset('images/sistema.png') }}" alt="Dashboard de Sistema">
                         <span class="profile-photo-glow"></span>
                     </div>
                 </div>
                 <div class="profile-details">
-                    <h2 class="section-title">Rafael Caçote</h2>
+                    <h2 class="section-title">Como desenvolvemos sistemas</h2>
                     <p class="page-paragraph">
-                        Especialista em transformar processos manuais em sistemas web modernos. Lidero projetos de ponta a ponta:
+                        Nossa equipe é especializada em transformar processos manuais em sistemas web modernos. Desenvolvemos projetos de ponta a ponta:
                         da arquitetura ao deploy, sempre com foco em performance, experiência do usuário e resultados mensuráveis
                         para o negócio.
                     </p>
                     <p class="page-paragraph">
-                        Minha jornada começou em 2019 e desde então venho desenvolvendo soluções para empresas privadas e órgãos
-                        públicos, conectando tecnologia à estratégia para acelerar a tomada de decisão e reduzir custos operacionais.
+                        Trabalhamos com metodologias ágeis e práticas modernas de desenvolvimento, criando soluções para empresas privadas e órgãos
+                        públicos. Conectamos tecnologia à estratégia para acelerar a tomada de decisão e reduzir custos operacionais.
                     </p>
                     <div class="info-list">
                         <div class="info-item">
@@ -46,12 +46,9 @@
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
-                            <a href="https://wa.me/5592992684391" target="_blank" rel="noopener">(92) 99268-4391</a>
+                            <a href="https://wa.me/5592981075083" target="_blank" rel="noopener">(92) 98107-5083</a>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Manaus, AM - Brasil
-                        </div>
+                        
                     </div>
                     <div class="profile-actions">
                         <a href="{{ route('services') }}" class="btn btn-primary">
@@ -68,70 +65,12 @@
         </div>
     </section>
 
-    <section class="page-section page-section-alt">
-        <div class="container">
-            <h2 class="section-title">Experiência profissional</h2>
-            <p class="section-subtitle">
-                Projetos entregues com foco em soluções sob medida, integração de sistemas e melhoria contínua.
-            </p>
-
-            @php
-                $experiences = [
-                    [
-                        'period' => '2022 - Atual',
-                        'role' => 'Desenvolvedor Full Stack Pleno',
-                        'company' => 'Prefeitura Municipal de Manaus',
-                        'description' => 'Liderança técnica, definição de arquitetura e desenvolvimento de sistemas de grande escala para serviços públicos.',
-                        'highlights' => [
-                            'Mais de 8 projetos críticos entregues em produção',
-                            'Implantação de pipelines CI/CD que reduziram o tempo de deploy em 60%',
-                            'Criação de integrações entre sistemas legados e novas plataformas',
-                        ],
-                    ],
-                    [
-                        'period' => '2018 - 2022',
-                        'role' => 'Desenvolvedor de Sistemas',
-                        'company' => 'Hospital Beneficente Português',
-                        'description' => 'Automação de fluxos hospitalares, integração com APIs e migração de planilhas para sistemas web responsivos.',
-                        'highlights' => [
-                            'Mais de 9 produtos digitais desenvolvidos para áreas administrativas e clínicas',
-                            'Integrações com gateways de pagamento e serviços de terceiros',
-                            'Otimização de sistemas existentes garantindo alta disponibilidade',
-                        ],
-                    ],
-                ];
-            @endphp
-
-            <div class="timeline">
-                @foreach ($experiences as $experience)
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-period">{{ $experience['period'] }}</span>
-                            <h3 class="timeline-title">{{ $experience['role'] }}</h3>
-                            <span class="timeline-company">{{ $experience['company'] }}</span>
-                            <p class="timeline-description">{{ $experience['description'] }}</p>
-                            <ul class="timeline-list">
-                                @foreach ($experience['highlights'] as $highlight)
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        {{ $highlight }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
     <section class="page-section">
         <div class="container">
             <div class="split-grid">
                 <div>
                     <h2 class="section-title">Habilidades técnicas</h2>
-                    <p class="section-subtitle">Stack moderno para aplicações escaláveis e de alta performance.</p>
+                    <p class="section-subtitle">Tecnologias que utilizamos para criar aplicações escaláveis e de alta performance.</p>
                     @php
                         $skills = [
                             ['name' => 'Laravel & PHP', 'level' => 95],
@@ -187,7 +126,7 @@
     <section class="page-section page-section-alt">
         <div class="container">
             <h2 class="section-title">Valores que guiam cada projeto</h2>
-            <p class="section-subtitle">Mais do que tecnologia, entrego parceria, transparência e compromisso.</p>
+            <p class="section-subtitle">Mais do que tecnologia, entregamos parceria, transparência e compromisso.</p>
 
             @php
                 $values = [
@@ -234,7 +173,7 @@
                 <div>
                     <h2 class="section-title">Vamos construir seu próximo projeto?</h2>
                     <p class="section-subtitle">
-                        Seja para otimizar processos internos, integrar sistemas ou criar um novo produto digital, posso ajudar.
+                        Seja para otimizar processos internos, integrar sistemas ou criar um novo produto digital, podemos ajudar.
                     </p>
                 </div>
                 <div class="cta-actions">

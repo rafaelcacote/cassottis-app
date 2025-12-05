@@ -271,7 +271,7 @@
                         <i class="fas fa-comments"></i>
                         Agendar conversa
                     </a>
-                    <a href="https://wa.me/5592992684391" class="btn btn-outline" target="_blank" rel="noopener">
+                    <a href="https://wa.me/5592981075083" class="btn btn-outline" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp"></i>
                         Falar via WhatsApp
                     </a>
