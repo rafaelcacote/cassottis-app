@@ -24,6 +24,102 @@
     @include('partials.footer')
 
     @stack('scripts')
+    
+    <script>
+        // Mobile menu initialization
+        function toggleMenuFunction(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('navbar-links');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            
+            if (!toggle || !menu || !overlay) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+            
+            const isActive = menu.classList.contains('active');
+            
+            toggle.classList.toggle('active');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (!isActive) {
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            } else {
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+            }
+        }
+        
+        function closeMenuFunction() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('navbar-links');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            
+            if (toggle) toggle.classList.remove('active');
+            if (menu) menu.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
+        
+        // Make function globally available for onclick
+        window.toggleMobileMenu = toggleMenuFunction;
+        
+        function initMobileMenu() {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('navbar-links');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            
+            if (!toggle || !menu || !overlay) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+            
+            // Add event listeners
+            toggle.addEventListener('click', toggleMenuFunction);
+            toggle.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                toggleMenuFunction(e);
+            });
+            
+            overlay.addEventListener('click', closeMenuFunction);
+            
+            // Close menu when clicking on a link
+            const navLinks = menu.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        closeMenuFunction();
+                    }
+                });
+            });
+            
+            // Close menu on window resize if it's desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    closeMenuFunction();
+                }
+            });
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            // DOM already loaded
+            initMobileMenu();
+        }
+    </script>
 </body>
 </html>
 
