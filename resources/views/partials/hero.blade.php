@@ -26,7 +26,11 @@
                 <div class="hero-image-wrapper">
                     <img src="{{ asset('images/hero3.png') }}" alt="Transformação de planilha para sistema">
                     <div class="hero-transition-indicator">
-                        <span class="transition-arrow">→</span>
+                        <div class="transition-arrow">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 5L12.5 10L7.5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
