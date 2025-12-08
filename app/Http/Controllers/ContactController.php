@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
+use App\Mail\ContactNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -56,6 +58,22 @@ class ContactController extends Controller
 
             // Salvar no banco de dados
             ContactMessage::create($data);
+
+            // Enviar notificação por email
+            try {
+                Mail::to('contato@cassottis.com')->send(
+                    new ContactNotification(
+                        $validated['name'],
+                        $validated['email'],
+                        $validated['phone'],
+                        $validated['company'] ?? null,
+                        $validated['message']
+                    )
+                );
+            } catch (\Exception $mailException) {
+                // Log do erro de email, mas não falha o processo
+                \Log::error('Erro ao enviar email de notificação: ' . $mailException->getMessage());
+            }
 
             // Retornar resposta JSON
             return response()->json([

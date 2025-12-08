@@ -42,7 +42,7 @@
                     <div class="info-list">
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:rafael.cacote@gmail.com">rafael.cacote@gmail.com</a>
+                            <a href="mailto:contato@cassottis.com">contato@cassottis.com</a>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
