@@ -3,6 +3,7 @@
 @section('title', 'Contato - Cassottis')
 
 @section('content')
+    <!-- Hero Section -->
     <section class="page-hero">
         <div class="container">
             <div class="page-hero-content">
@@ -19,41 +20,65 @@
         </div>
     </section>
 
+    <!-- Contact Form Section -->
     <section class="page-section">
         <div class="container">
-            <div class="split-grid">
-                <div>
-                    <h2 class="section-title">Como podemos ajudar?</h2>
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-column">
+                    <h2 class="section-title">Solicite seu Orçamento</h2>
                     <p class="page-paragraph">
-                        Atuo com consultoria completa para transformar fluxos manuais e planilhas complexas em plataformas
-                        web intuitivas, seguras e escaláveis. Cada projeto é desenvolvido em parceria com o time para garantir
-                        aderência real às necessidades do negócio.
+                        Preencha o formulário abaixo com os detalhes do seu projeto e entrarei em contato em até 24 horas.
                     </p>
-                    <div class="info-list">
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:rafael.cacote@gmail.com">rafael.cacote@gmail.com</a>
+                    
+                    @include('partials.contact')
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-column">
+                    <h2 class="section-title">Outras Formas de Contato</h2>
+                    <p class="page-paragraph">
+                        Prefere falar diretamente? Entre em contato através dos canais abaixo:
+                    </p>
+                    
+                    <!-- Contact Methods -->
+                    <div class="contact-methods">
+                        <div class="contact-method-item">
+                            <div class="contact-method-icon contact-method-icon-email">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-method-content">
+                                <h3 class="contact-method-title">E-mail</h3>
+                                <p class="contact-method-description">Resposta em até 24 horas</p>
+                                <a href="mailto:contato@cassottis.com" class="contact-method-link">
+                                    contato@cassottis.com
+                                </a>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <i class="fab fa-whatsapp"></i>
-                            <a href="https://wa.me/5592981075083" target="_blank" rel="noopener">WhatsApp direto</a>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Manaus, AM - Brasil
+                        
+                        <div class="contact-method-item">
+                            <div class="contact-method-icon contact-method-icon-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-method-content">
+                                <h3 class="contact-method-title">WhatsApp</h3>
+                                <p class="contact-method-description">Resposta rápida no horário comercial</p>
+                                <a href="https://wa.me/5592981075083" target="_blank" rel="noopener" class="contact-method-link">
+                                    (92) 98107-5083
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Next Steps Card -->
                     <div class="page-card page-card-highlight">
                         <h3 class="page-card-title">Qual é o próximo passo?</h3>
                         <ul class="page-card-list">
-                            <li><i class="fas fa-check"></i>Compartilhe contexto e objetivos do projeto</li>
-                            <li><i class="fas fa-check"></i>Avaliamos integrações, prazos e orçamento</li>
-                            <li><i class="fas fa-check"></i>Você recebe um plano claro para iniciar</li>
+                            <li><i class="fas fa-check"></i> Compartilhe contexto e objetivos do projeto</li>
+                            <li><i class="fas fa-check"></i> Avaliamos integrações, prazos e orçamento</li>
+                            <li><i class="fas fa-check"></i> Você recebe um plano claro para iniciar</li>
                         </ul>
                     </div>
-                </div>
-                <div>
-                    @include('partials.contact')
                 </div>
             </div>
         </div>
@@ -65,7 +90,7 @@
                 <div>
                     <h2 class="section-title">Prefere conversar agora?</h2>
                     <p class="section-subtitle">
-                        Estou disponível para uma call rápida ou troca de mensagens para entender melhor o cenário atual e as
+                        Estou disponível para uma troca de mensagens para entender melhor o cenário atual e as
                         expectativas do projeto.
                     </p>
                 </div>
