@@ -128,6 +128,13 @@
         .btn-danger:hover {
             background-color: #dc2626;
         }
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #059669;
+        }
         .form-input {
             width: 100%;
             padding: 0.5rem 1rem;
@@ -233,6 +240,21 @@
                             </a>
                         </div>
                     </div>
+                    
+                    <!-- Mensagens de Contato -->
+                    <a href="{{ route('admin.contact-messages.index') }}" 
+                       class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
+                        <i class="fas fa-envelope w-5 h-5"></i>
+                        <span>Mensagens</span>
+                        @php
+                            $unreadCount = \App\Models\ContactMessage::where('status', 'new')->count();
+                        @endphp
+                        @if($unreadCount > 0)
+                            <span class="ml-auto inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
+                                {{ $unreadCount }}
+                            </span>
+                        @endif
+                    </a>
                     
                     <!-- Divider -->
                     <div class="border-t border-gray-200 my-4"></div>

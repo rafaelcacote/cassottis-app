@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\BlogPost;
+use App\Models\ContactMessage;
 
 class AdminController extends Controller
 {
@@ -22,6 +23,11 @@ class AdminController extends Controller
             'published_posts' => BlogPost::published()->count(),
             'draft_posts' => BlogPost::where('status', 'draft')->count(),
             'featured_posts' => BlogPost::featured()->count(),
+            
+            'total_messages' => ContactMessage::count(),
+            'new_messages' => ContactMessage::where('status', 'new')->count(),
+            'read_messages' => ContactMessage::where('status', 'read')->count(),
+            'replied_messages' => ContactMessage::where('status', 'replied')->count(),
         ];
         
         // Projetos recentes
@@ -29,6 +35,9 @@ class AdminController extends Controller
         
         // Posts recentes
         $recentPosts = BlogPost::latest()->limit(5)->get();
+        
+        // Mensagens recentes
+        $recentMessages = ContactMessage::latest()->limit(5)->get();
         
         // Estatísticas mensais (últimos 6 meses)
         $monthlyStats = [];
@@ -49,6 +58,7 @@ class AdminController extends Controller
             'stats', 
             'recentProjects', 
             'recentPosts',
+            'recentMessages',
             'monthlyStats'
         ));
     }
