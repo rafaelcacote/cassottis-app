@@ -25,7 +25,7 @@
                     <textarea id="message" name="message" class="form-textarea" placeholder="Conte-nos sobre seu desafio com planilhas..." required></textarea>
                 </div>
                 <div class="form-group recaptcha-wrapper">
-                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" data-size="compact"></div>
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" data-size="normal"></div>
                     @error('g-recaptcha-response')
                         <div class="form-feedback error">{{ $message }}</div>
                     @enderror
