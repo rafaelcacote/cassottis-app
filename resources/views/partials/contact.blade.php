@@ -3,29 +3,29 @@
                 @csrf
                 <div class="form-group">
                     <label for="name" class="form-label">Nome</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" autocomplete="name" autocapitalize="words" required>
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" autocomplete="email" inputmode="email" autocapitalize="none" required>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="form-label">Telefone</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="(00) 00000-0000" required>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" required>
                     <small class="form-hint">
                         <i class="fab fa-whatsapp"></i> Entraremos em contato preferencialmente via WhatsApp
                     </small>
                 </div>
                 <div class="form-group">
                     <label for="company" class="form-label">Empresa</label>
-                    <input type="text" id="company" name="company" class="form-input" placeholder="Sua empresa (opcional)">
+                    <input type="text" id="company" name="company" class="form-input" placeholder="Sua empresa (opcional)" autocomplete="organization" autocapitalize="words">
                 </div>
                 <div class="form-group">
                     <label for="message" class="form-label">Mensagem</label>
                     <textarea id="message" name="message" class="form-textarea" placeholder="Conte-nos sobre seu desafio com planilhas..." required></textarea>
                 </div>
-                <div class="form-group">
-                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                <div class="form-group recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" data-size="compact"></div>
                     @error('g-recaptcha-response')
                         <div class="form-feedback error">{{ $message }}</div>
                     @enderror
@@ -34,23 +34,8 @@
                     <i class="fas fa-paper-plane"></i>
                     <span>Enviar Mensagem</span>
                 </button>
-                <div class="form-feedback" id="formFeedback"></div>
+                <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
             </form>
-</div>
-
-<!-- Modal de Sucesso -->
-<div class="success-modal" id="successModal">
-    <div class="success-modal-overlay"></div>
-    <div class="success-modal-content">
-        <div class="success-modal-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <h3 class="success-modal-title">Mensagem Enviada com Sucesso!</h3>
-        <p class="success-modal-text">Recebemos sua mensagem e entraremos em contato em breve.</p>
-        <button class="btn btn-primary" onclick="closeSuccessModal()">
-            Entendi
-        </button>
-    </div>
 </div>
 
 @push('scripts')
@@ -87,35 +72,14 @@
         }
     });
     
-    // Função para mostrar o modal de sucesso
-    function showSuccessModal() {
-        const modal = document.getElementById('successModal');
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
+    function showInlineSuccess(feedbackEl) {
+        if (!feedbackEl) return;
+        feedbackEl.className = 'form-feedback success';
+        feedbackEl.innerHTML = '<i class="fas fa-check-circle" aria-hidden="true"></i><span>Mensagem enviada! Vou te chamar em breve.</span>';
+        // Garantir visibilidade no mobile (caso o teclado esteja aberto)
+        feedbackEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-    
-    // Função para fechar o modal
-    function closeSuccessModal() {
-        const modal = document.getElementById('successModal');
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
-    
-    // Fechar modal ao clicar no overlay
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('successModal');
-        const overlay = modal.querySelector('.success-modal-overlay');
-        
-        overlay.addEventListener('click', closeSuccessModal);
-        
-        // Fechar modal com tecla ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('show')) {
-                closeSuccessModal();
-            }
-        });
-    });
-    
+
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -123,7 +87,21 @@
         const submitBtn = document.getElementById('submitBtn');
         const feedback = document.getElementById('formFeedback');
         
-        // Verificar se o reCAPTCHA foi preenchido
+        // Limpar feedback anterior
+        if (feedback) {
+            feedback.textContent = '';
+            feedback.className = 'form-feedback';
+        }
+
+        // Verificar se o reCAPTCHA foi preenchido (se disponível)
+        if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+            if (feedback) {
+                feedback.textContent = 'Carregando verificação anti-spam... aguarde 1 segundo e tente novamente.';
+                feedback.className = 'form-feedback error';
+            }
+            return;
+        }
+
         const recaptchaResponse = grecaptcha.getResponse();
         if (!recaptchaResponse) {
             feedback.textContent = 'Por favor, complete a verificação reCAPTCHA.';
@@ -137,8 +115,6 @@
         // Desabilitar botão e mostrar estado de carregamento
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Enviando...</span>';
-        feedback.textContent = '';
-        feedback.className = 'form-feedback';
 
         // Enviar formulário via AJAX
         fetch(form.action, {
@@ -164,8 +140,8 @@
                     grecaptcha.reset();
                 }
                 
-                // Mostrar modal de sucesso
-                showSuccessModal();
+                // Mostrar sucesso inline (mais estável que modal/drawer/toast)
+                showInlineSuccess(feedback);
                 
                 // Resetar botão
                 submitBtn.disabled = false;

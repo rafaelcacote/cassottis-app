@@ -130,3 +130,4 @@ O CORS já está configurado no `bootstrap/app.php`. Se precisar ajustar:
 - [ ] Adicionar sincronização em background
 
 
+

@@ -99,7 +99,7 @@
                         <i class="fab fa-whatsapp"></i>
                         Chamar no WhatsApp
                     </a>
-                    <a href="mailto:contato@cassottis.com" class="btn btn-outline">
+                    <a href="mailto:rafael.cacote@gmail.com" class="btn btn-outline">
                         <i class="fas fa-envelope"></i>
                         Enviar email
                     </a>
